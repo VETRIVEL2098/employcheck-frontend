@@ -1,0 +1,147 @@
+<div *ngIf="isLoading" class="loader-overlay">
+  <mat-progress-spinner 
+      mode="indeterminate" 
+      color="primary" 
+      diameter="70">
+  </mat-progress-spinner>
+</div>
+<div class="dashboard-container">
+    <h2 class="dashboard-title">Dashboard</h2>
+  
+    <div class="card-grid">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-icon class="card-icon users">people</mat-icon>
+          <mat-card-title>Total User</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="margin-left: 5px;">
+          <h3>120</h3>
+          <p>Active this month</p>
+        </mat-card-content>
+      </mat-card>
+  
+    
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-icon class="card-icon reports">bar_chart</mat-icon>
+          <mat-card-title>Reports</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="margin-left: 5px;">
+          <h3>32</h3>
+          <p>Pending reviews</p>
+        </mat-card-content>
+      </mat-card>
+  
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-icon class="card-icon revenue">attach_money</mat-icon>
+          <mat-card-title>Revenue</mat-card-title>
+        </mat-card-header>
+        <mat-card-content style="margin-left: 5px;">
+          <h3>$12,500</h3>
+          <p>This quarter</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  
+    <div *ngIf="user?.role != 'Admin'" class="bottom-grid">
+      <mat-card class="dashboard-card large-card user-info-card">
+        <mat-card-header>
+          <div class="user-avatar">
+            <mat-icon>account_circle</mat-icon>
+          </div>
+          <div>
+            <mat-card-title>User Info</mat-card-title>
+            <mat-card-subtitle>Profile Overview</mat-card-subtitle>
+          </div>
+        </mat-card-header>
+      
+        <mat-divider></mat-divider>
+      
+        <mat-card-content>
+          <div class="user-detail">
+            <label>Name</label>
+            <span>{{user?.username}}</span>
+          </div>
+          <div class="user-detail">
+            <label>Email</label>
+            <span>{{user?.email}}</span>
+          </div>
+          <div class="user-detail">
+            <label>Role</label>
+            <span>{{user?.role}}</span>
+          </div>
+        </mat-card-content>
+      
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="showUserDetails()">
+            User Details
+          </button>
+        </mat-card-actions>
+      </mat-card>
+      
+      <mat-card class="dashboard-card large-card">
+        <mat-card-header style="margin-bottom: 20px;">
+          <mat-icon color="accent">checklist</mat-icon>
+          <mat-card-title style="margin-top: 5px;">Todo List</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+          <mat-selection-list>
+            <mat-list-option [selected]="true">Finish Angular project setup</mat-list-option>
+            <mat-list-option>Review pending reports</mat-list-option>
+            <mat-list-option>Prepare monthly revenue report</mat-list-option>
+          </mat-selection-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    
+<div *ngIf="user?.role === 'Admin'" class="user-table-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-icon color="primary">supervisor_account</mat-icon>
+      <mat-card-title>User List</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+
+    <mat-card-content>
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Status</th>
+            <th class="actions-col">Actions</th>
+            <th class="actions-col">Activate/Deactivate</th> 
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let u of users">
+            <td><a>{{ u.username }}</a></td>
+            <td>{{ u.email }}</td>
+            <td>{{ u.role }}</td>
+            <td>{{ u.status }}</td>
+            <td class="actions-col">
+              <button mat-icon-button color="black" (click)="deleteUser(u)">
+                <mat-icon>visibility</mat-icon>
+              </button>
+            </td>
+            <td class="actions-col">
+              <mat-slide-toggle 
+              color="primary"
+                [checked]="u.status === 'Active'" 
+                (change)="toggleUserStatus(u, $event.checked)">
+              </mat-slide-toggle>
+            </td>
+    
+          </tr>
+        </tbody>
+      </table>
+      
+    </mat-card-content>
+  </mat-card>
+</div>
+</div>
+  
