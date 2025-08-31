@@ -10,7 +10,7 @@ exports.loginUser = async (req, res) => {
     return res.status(401).json({ message: "Invalid credentials" });
   }
   if (user.status==="Deactive") {
-    return res.status(401).json({ message: "User is Deactive" });
+    return res.status(401).json({ message: "User is Deactivated" });
   }
   console.log(user,"user Deatils")
   const token = jwt.sign({ role: user.role }, SECRET, { expiresIn: "1h" });
