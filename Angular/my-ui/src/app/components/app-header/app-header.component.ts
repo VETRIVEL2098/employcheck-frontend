@@ -9,13 +9,14 @@ import { Router } from '@angular/router';
 export class AppHeaderComponent {
   user: any = null;
 
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {
+  constructor(private router: Router) {
     const storedUser = sessionStorage.getItem('user');
     if (storedUser) {
       this.user = JSON.parse(storedUser);
     }
+  }
+
+  ngOnInit(): void {
   }
   showUserDetails(){
     this.router.navigate(['user/user-record']);
