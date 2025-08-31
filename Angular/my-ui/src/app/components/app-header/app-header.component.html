@@ -1,0 +1,28 @@
+<mat-toolbar *ngIf="user" color="primary" class="app-header">
+    <div class="app-logo">
+      <span class="app-title">EmployChck</span>
+    </div>
+  
+    <span class="spacer"></span>
+  
+    <ng-container>
+      <span class="username">Welcome, {{ user?.username }}</span>
+  
+      <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+  
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="showUserDetails()">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <mat-divider></mat-divider>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar>
+  

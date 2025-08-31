@@ -1,0 +1,88 @@
+<div *ngIf="isLoading" class="loader-overlay">
+  <mat-progress-spinner 
+      mode="indeterminate" 
+      color="primary" 
+      diameter="70">
+  </mat-progress-spinner>
+</div>
+<mat-card class="user-details-card">
+    <mat-card-header>
+    
+      <mat-card-title>User Details</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  
+    <mat-card-content>
+      <div class="user-detail-grid">
+        <div class="user-field">
+          <strong>Username</strong>
+          <p>{{ user?.username }}</p>
+        </div>
+        <div class="user-field">
+          <strong>Username</strong>
+          <p>{{ user?.fullName }}</p>
+        </div>
+        <div class="user-field">
+          <strong>Email</strong>
+          <p>{{ user?.email }}</p>
+        </div>
+        <div class="user-field">
+          <strong>Mobile</strong>
+          <p>{{ user?.mobile }}</p>
+        </div>
+        <div class="user-field">
+          <strong>Role</strong>
+          <p>{{ user?.role }}</p>
+        </div>
+  
+        <div class="user-field">
+          <strong>EMP ID</strong>
+          <p>{{ user?.emp_id }}</p>
+        </div>
+        <div class="user-field">
+          <strong>Status</strong>
+          <p>{{user?.status}}</p>
+        </div>
+        <div class="user-field">
+          <strong>Department</strong>
+          <p>{{user?.department}}</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card class="permissions-card">
+    <mat-card-header>
+      <mat-card-title>User Module Acess</mat-card-title>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+  
+    <mat-card-content>
+      <table class="permissions-table">
+        <thead>
+          <tr>
+            <th>Section</th>
+            <th>Create</th>
+            <th>Read</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let perm of permissions">
+            <td><b>{{ perm.section.toUpperCase() }}</b></td>
+            <td>{{ perm.perms.create ? '✔' : '✖' }}</td>
+            <td>{{ perm.perms.read ? '✔' : '✖' }}</td>
+            <td>{{ perm.perms.update ? '✔' : '✖' }}</td>
+            <td>{{ perm.perms.delete ? '✔' : '✖' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card-content>
+  </mat-card>
+  
+  
+  
+  
+  
+  
+  
