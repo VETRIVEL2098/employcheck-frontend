@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 app.use(delayMiddleware)
 
-const MONGO_URI = process.env.DB_URI ;
+const MONGO_URI = process.env.DB_URI || 'mongodb+srv://vetri2098:JIo3ROuDBfczbocv@cluster0.woqdreh.mongodb.net/employchck' ;
 
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
